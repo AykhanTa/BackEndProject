@@ -4,6 +4,7 @@ using BackEndProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEndProject.Migrations
 {
     [DbContext(typeof(JuanDbContext))]
-    partial class JuanDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240725154220_addIsNewColumnProductTable")]
+    partial class addIsNewColumnProductTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,75 +24,6 @@ namespace BackEndProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("BackEndProject.Models.Blog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("BackEndProject.Models.BlogTag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BlogId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("BlogTags");
-                });
 
             modelBuilder.Entity("BackEndProject.Models.Category", b =>
                 {
@@ -250,53 +184,6 @@ namespace BackEndProject.Migrations
                     b.ToTable("Sliders");
                 });
 
-            modelBuilder.Entity("BackEndProject.Models.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tags");
-                });
-
-            modelBuilder.Entity("BackEndProject.Models.BlogTag", b =>
-                {
-                    b.HasOne("BackEndProject.Models.Blog", "Blog")
-                        .WithMany("BlogTags")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BackEndProject.Models.Tag", "Tag")
-                        .WithMany("BlogTags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Blog");
-
-                    b.Navigation("Tag");
-                });
-
             modelBuilder.Entity("BackEndProject.Models.Product", b =>
                 {
                     b.HasOne("BackEndProject.Models.Category", "Category")
@@ -306,16 +193,6 @@ namespace BackEndProject.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("BackEndProject.Models.Blog", b =>
-                {
-                    b.Navigation("BlogTags");
-                });
-
-            modelBuilder.Entity("BackEndProject.Models.Tag", b =>
-                {
-                    b.Navigation("BlogTags");
                 });
 #pragma warning restore 612, 618
         }

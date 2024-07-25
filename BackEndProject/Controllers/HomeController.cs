@@ -21,6 +21,14 @@ namespace BackEndProject.Controllers
 				.AsNoTracking()
 				.Where(s=>!s.IsDelete)
 				.ToListAsync();
+			homeVM.Products=await _context.Products
+				.AsNoTracking()
+				.Where (p=>!p.IsDelete)
+				.ToListAsync();
+			homeVM.Blogs=await _context.Blogs
+				.AsNoTracking()
+				.Where(b=>!b.IsDelete)
+				.ToListAsync();
 			return View(homeVM);
 		}
  
