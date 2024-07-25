@@ -1,7 +1,20 @@
+using BackEndProject.Data;
+using BackEndProject.Interfaces;
+using BackEndProject.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+var config=builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<JuanDbContext>(options =>
+{
+	options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddScoped<ILayoutService,LayoutService>();
 
 var app = builder.Build();
 
@@ -16,8 +29,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapDefaultControllerRoute();
+//app.MapControllerRoute(
+//	name: "default",
+//	pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
