@@ -88,7 +88,7 @@
                         <!-- start logo area -->
                         <div class="col-lg-2">
                             <div class="logo">
-                                <a asp-controller="home">
+                                <a asp-controller="home" asp-action="index">
                                     <img src="~/assets/img/logo/@settings.FirstOrDefault(s=>s.Key=="Logo").Value" alt="" />
                                 </a>
                             </div>
@@ -354,8 +354,8 @@
                 <!-- search box start -->
                 <div class="search-box-offcanvas">
                     <form>
-                        <input type="text" placeholder="Search Here..." />
-                        <button class="search-btn">
+                        <input id="searchInput" type="text" placeholder="Search Here..." />
+                        <button>
                             <i class="ion-ios-search-strong"></i>
                         </button>
                     </form>
@@ -581,7 +581,10 @@
     </aside>
     <!-- off-canvas menu end -->
     <!-- main wrapper start -->
+        <main>
+
             @RenderBody()
+        </main>
     <!-- main wrapper end -->
     <!-- Quick view modal start -->
     <div class="modal" id="quick_view">
@@ -720,7 +723,10 @@
             <div class="container">
                 <div class="offcanvas-search-box">
                     <form class="d-flex bdr-bottom w-100">
-                        <input type="text" placeholder="Search entire storage here..." />
+                        <input id="searchInput" type="text" placeholder="Search entire storage here..." />
+                        <ul id="searchList">
+
+                        </ul>
                         <button class="search-btn">
                             <i class="ion-ios-search-strong"></i>search
                         </button>
@@ -819,8 +825,9 @@
     <!-- Scroll to Top End -->
     <!--=======================Javascript============================-->
     <!--=== All Vendor Js ===-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js" integrity="sha512-JSCFHhKDilTRRXe9ak/FJ28dcpOJxzQaCd3Xg8MyF6XFjODhy/YMCM8HW0TFDckNHWUewW+kfvhin43hKtJxAw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="~/assets/js/vendor.js"></script>
+     <script src="~/assets/js/vendor.js"></script>
     <script src="~/assets/js/custom.js"></script>
     <!--=== All Plugins Js ===-->
     <script src="~/assets/js/plugins.js"></script>
