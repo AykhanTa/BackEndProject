@@ -119,7 +119,7 @@
                                         <a href="#" data-toggle="tooltip" title="Wishlist">
                                             <i class="ion-android-favorite-outline"></i>
                                         </a>
-                                        <a href="#" data-toggle="tooltip" title="Add To Cart">
+                                        <a class="addToBasket" data-id="@product.Id" data-toggle="tooltip" title="Add To Cart">
                                             <i class="ion-bag"></i>
                                         </a>
                                         <a href="/product/productmodal/@product.Id" class="productModal" data-toggle="modal" data-target="#quick_view">
@@ -143,30 +143,23 @@
     <div class="banner-statistics">
         <div class="container">
             <div class="row no-gutters mtn-30">
+                @foreach (var banner in Model.Banners)
+            {
                 <div class="col-md-6">
                     <div class="img-container mt-30">
                         <a href="product-details.html">
-                            <img src="~/assets/img/banner/banner-1.jpg"
+                            <img src="~/assets/img/banner/@banner.Image"
                                  alt="banner-image" />
                         </a>
                         <div class="banner-text">
-                            <h5 class="banner-subtitle">sports shoes</h5>
-                            <h3 class="banner-title">20% Off<br />For Sports men</h3>
+                            <h5 class="banner-subtitle">@banner.SubTitle</h5>
+                            <h3 class="banner-title">@Html.Raw(banner.Title)</h3>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="img-container mt-30">
-                        <a href="product-details.html">
-                            <img src="~/assets/img/banner/banner-2.jpg"
-                                 alt="banner-image" />
-                        </a>
-                        <div class="banner-text">
-                            <h5 class="banner-subtitle">sports shoes</h5>
-                            <h3 class="banner-title">20% Off<br />For Sports men</h3>
-                        </div>
-                    </div>
-                </div>
+
+
+            }
             </div>
         </div>
     </div>
@@ -188,7 +181,7 @@
                 <div class="col-xl-4 col-lg-5 col-md-5">
                     <div class="product-banner">
                         <a href="#">
-                            <img src="~/assets/img/banner/banner-3.jpg"
+                            <img src="~/assets/img/banner/@ViewBag.BannerPhoto"
                                  alt="product banner" />
                         </a>
                     </div>

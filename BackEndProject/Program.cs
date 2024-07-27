@@ -15,6 +15,12 @@ builder.Services.AddDbContext<JuanDbContext>(options =>
 });
 
 builder.Services.AddScoped<ILayoutService,LayoutService>();
+builder.Services.AddSession(options =>
+{
+	options.IdleTimeout=TimeSpan.FromMinutes(10);
+});
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

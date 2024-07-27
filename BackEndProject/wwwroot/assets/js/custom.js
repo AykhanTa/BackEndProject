@@ -1,5 +1,18 @@
 ﻿$(document).ready(function () {
+    //addBasket
+    $(".addToBasket").click(function (ev) {
+        ev.preventDefault();
+        var id = $(this).data("id");
+        axios.get("/basket/addbasket?id="+id)
+            .then(function (datas) {
+                $(".minicart-content-box").html(datas.data);
+            })
+    })
 
+
+
+
+    //search
     $(document).on("keyup", "#searchInput", function () {
         $("#searchList").html("")
         let searchValue = $(this).val();

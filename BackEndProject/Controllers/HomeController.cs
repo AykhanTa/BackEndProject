@@ -29,6 +29,11 @@ namespace BackEndProject.Controllers
 				.AsNoTracking()
 				.Where(b=>!b.IsDelete)
 				.ToListAsync();
+			homeVM.Banners = await _context.Banners
+				.AsNoTracking()
+				.Where(b => !b.IsDelete)
+				.ToListAsync();
+			ViewBag.BannerPhoto = _context.Settings.FirstOrDefault(s=>!s.IsDelete&&s.Key=="BannerPhoto").Value;
 			return View(homeVM);
 		}
  
