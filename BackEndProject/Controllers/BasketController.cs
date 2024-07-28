@@ -53,8 +53,17 @@ namespace BackEndProject.Controllers
         }
         public IActionResult GetBasket()
         {
+            return View();
+        }
+        public IActionResult RemoveProduct(int? id)
+        {
+            if (id == null) return BadRequest();
             var result = HttpContext.Request.Cookies["basket"];
-            return Json(result);
+            List<BasketVM> baskets= JsonConvert.DeserializeObject<List<BasketVM>>(result);
+            var product=baskets.FirstOrDefault(p=>p.Id==id);
+            baskets.Remove(product);
+            HttpContext.Response.Cookies.Append("basket", JsonConvert.SerializeObject(baskets));
+            return RedirectToAction("index","home");
         }
     }
 }

@@ -1,3 +1,4 @@
+using BackEndProject;
 using BackEndProject.Data;
 using BackEndProject.Interfaces;
 using BackEndProject.Services;
@@ -7,20 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 var config=builder.Configuration;
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
-
-builder.Services.AddDbContext<JuanDbContext>(options =>
-{
-	options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
-});
-
-builder.Services.AddScoped<ILayoutService,LayoutService>();
-builder.Services.AddSession(options =>
-{
-	options.IdleTimeout=TimeSpan.FromMinutes(10);
-});
-
-builder.Services.AddHttpContextAccessor();
+builder.Services.Register(config);
 
 var app = builder.Build();
 

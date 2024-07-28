@@ -19,7 +19,9 @@
                     </p>
                 </div>
                 <button class="minicart-remove">
-                    <i class="ion-android-close"></i>
+                    <a asp-controller="basket" asp-action="removeProduct" asp-route-id="@product.Id">
+                        <i class="ion-android-close"></i>
+                    </a>
                 </button>
             </li>
 
