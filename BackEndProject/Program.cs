@@ -1,8 +1,4 @@
 using BackEndProject;
-using BackEndProject.Data;
-using BackEndProject.Interfaces;
-using BackEndProject.Services;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var config=builder.Configuration;
@@ -22,6 +18,12 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+
+app.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=dashboard}/{action=Index}/{id?}"
+    );
 
 app.MapDefaultControllerRoute();
 //app.MapControllerRoute(

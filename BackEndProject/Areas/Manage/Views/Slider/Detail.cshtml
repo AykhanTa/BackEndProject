@@ -1,0 +1,30 @@
+﻿@model Slider
+
+<h1 class="h3 mb-2 text-gray-800">Sliders Table</h1>
+
+<a class="btn btn-primary mt-4 mb-4" href="/manage/slider/create">Create a slider</a>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Subtitle</th>
+            <th scope="col">Description</th>
+
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>
+                    <img width="200" height="200" src="~/assets/img/slider/@Model.Image" alt="@Model.Title" />
+                </td>
+                <td>@Model.Title</td>
+                <td>@Model.SubTitle</td>
+                <td>@Model.Description</td>
+            </tr>
+    </tbody>
+</table>

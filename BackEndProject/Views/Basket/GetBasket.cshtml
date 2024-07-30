@@ -4,7 +4,7 @@
 }
 <main>
     <!-- breadcrumb area start -->
-    <div class="breadcrumb-area bg-img" data-bg="assets/img/banner/breadcrumb-banner.jpg">
+    <div class="breadcrumb-area bg-img" data-bg="~/assets/img/banner/breadcrumb-banner.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -12,7 +12,7 @@
                         <nav aria-label="breadcrumb">
                             <h1 class="breadcrumb-title">Cart</h1>
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="~/admin/index.html">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Cart</li>
                             </ul>
                         </nav>
@@ -45,7 +45,7 @@
                                     @foreach (var product in basket)
                                     {
                                         <tr>
-                                            <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="~/assets/img/product/@product.Image" alt="Product" /></a></td>
+                                            <td class="pro-thumbnail"><a href="~/admin/#"><img class="img-fluid" src="~/assets/img/product/@product.Image" alt="Product" /></a></td>
                                             <td class="pro-title"><a asp-controller="product" asp-action="detail" asp-route-id="@product.Id">@product.Name</a></td>
                                             <td class="pro-price"><span>$@String.Format("{0:0.00}", product.Price)</span></td>
                                             <td class="pro-quantity">
@@ -69,7 +69,7 @@
                                 </form>
                             </div>
                             <div class="cart-update">
-                                <a href="#" class="btn">Update Cart</a>
+                                <a href="~/admin/#" class="btn">Update Cart</a>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <a href="checkout.html" class="btn d-block">Proceed Checkout</a>
+                            <a href="~/admin/checkout.html" class="btn d-block">Proceed Checkout</a>
                         </div>
                     </div>
                 </div>
