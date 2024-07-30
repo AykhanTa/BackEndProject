@@ -7,7 +7,7 @@ namespace BackEndProject.Models
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
-        List<Product> Products { get; set; }
+        public List<Product> Products { get; set; }
 
     }
 }

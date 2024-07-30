@@ -1,0 +1,42 @@
+﻿@model Category
+
+<h1 class="h3 mb-2 text-gray-800">Category detail and products </h1>
+
+<h1>@Model.Name</h1>
+<h1>@Model.CreateDate.ToString("MM/dd/yyyy")</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Create Date</th>
+            <th scope="col">Price</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var categoryProduct in Model.Products)
+        {
+            <tr>
+                <th scope="row">1</th>
+                <td>
+                    <img width="200" height="200" src="~/assets/img/product/@categoryProduct.MainImage" alt="@categoryProduct.Name" />
+                </td>
+                <td>@categoryProduct.Name</td>
+                <td>@categoryProduct.CreateDate.ToString("MM/dd/yyyy")</td>
+                @if (categoryProduct.DiscountPrice>0)
+                {
+                    <td>@categoryProduct.DiscountPrice</td>
+                }
+                else
+                {
+                    <td>@categoryProduct.Price</td>
+                }
+
+            </tr>
+
+        }
+    </tbody>
+</table>
