@@ -1,0 +1,10 @@
+﻿namespace BackEndProject.Models
+{
+	public class ProductSize:BaseEntity
+	{
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
+		public int Sizeid { get; set; }
+		public Size Size { get; set; }
+	}
+}

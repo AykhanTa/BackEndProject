@@ -16,6 +16,8 @@ namespace BackEndProject.Data
         public DbSet<Color> Colors { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<Banner> Banners { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<ProductSize> ProductSizes { get; set; }
 		public JuanDbContext(DbContextOptions options) : base(options)
         {
         }

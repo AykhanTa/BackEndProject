@@ -4,7 +4,7 @@
     <div class="row">
     <div class="col-lg-5">
         <div class="product-large-slider mb-20">
-            @foreach (var productImage in Model.ProductImages)
+            @foreach (var productImage in Model.ProductImages.Where(pi=>!pi.IsDelete))
             {
                 <div class="pro-large-img img-zoom">
                     <img src="~/assets/img/product/@productImage.Name"
@@ -14,7 +14,7 @@
             }
         </div>
         <div class="pro-nav slick-row-5">
-            @foreach (var productImage in Model.ProductImages)
+            @foreach (var productImage in Model.ProductImages.Where(pi=>!pi.IsDelete))
             {
                 <div class="pro-nav-thumb">
                     <img src="~/assets/img/product/@productImage.Name"

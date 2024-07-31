@@ -10,6 +10,8 @@ namespace BackEndProject.Models
         public string Name { get; set; }
         public int Count { get; set; }
         public string MainImage { get; set; }
+        [NotMapped]
+        public IFormFile MainPhoto { get; set; }
         [Column(TypeName = "money")]
         public decimal Price { get; set; }
         [Column(TypeName = "money")]
@@ -21,6 +23,13 @@ namespace BackEndProject.Models
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public List<ProductImage> ProductImages { get; set; }
+        [NotMapped]
+        public IFormFile[] Photos { get; set; }
+        [NotMapped]
+        public IEnumerable<int> ColorIds { get; set; }
+        [NotMapped]
+        public IEnumerable<int> SizeIds { get; set; }
         public List<ProductColor> ProductColors { get; set; }
+        public List<ProductSize> ProductSizes { get; set; }
     }
 }
