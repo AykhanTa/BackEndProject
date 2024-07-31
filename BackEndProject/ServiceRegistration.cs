@@ -1,6 +1,8 @@
 ﻿using BackEndProject.Data;
 using BackEndProject.Interfaces;
+using BackEndProject.Models;
 using BackEndProject.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BackEndProject
@@ -24,6 +26,21 @@ namespace BackEndProject
 
             services.AddHttpContextAccessor();
 
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireDigit = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredLength = 7;
+
+                options.User.RequireUniqueEmail=true;
+
+                options.Lockout.AllowedForNewUsers=true;
+                options.Lockout.MaxFailedAccessAttempts=3;
+                options.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromMinutes(10);
+            }).AddEntityFrameworkStores<JuanDbContext>()
+            .AddDefaultTokenProviders();
 
         }
     }

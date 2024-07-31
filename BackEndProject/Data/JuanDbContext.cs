@@ -1,9 +1,10 @@
 ﻿using BackEndProject.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BackEndProject.Data
 {
-    public class JuanDbContext : DbContext
+    public class JuanDbContext : IdentityDbContext<AppUser>
     {
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Slider> Sliders { get; set; }

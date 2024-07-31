@@ -39,7 +39,8 @@ namespace BackEndProject.Controllers
                 .Where(p => !p.IsDelete)
                 .Include(p => p.ProductImages)
                 .Include(p=>p.ProductColors)
-                .ThenInclude(pc=>pc.Color)
+                .ThenInclude(c=>c.Color)
+                .Include(p=>p.ProductSizes)
                 .FirstOrDefaultAsync(p => p.Id == id);
             if (product == null) return NotFound();
             var products = await _juanDbContext.Products

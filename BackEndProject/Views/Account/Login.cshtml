@@ -1,0 +1,31 @@
+﻿@model LoginVM
+<div class="login-reg-form-wrap">
+    <h2>Sign In</h2>
+    <p class="mt-10">Not registered yet? <a asp-action="register">Register instead!</a></p>
+    <form  method="post">
+        <div class="single-input-item">
+            <label asp-for="@Model.UserNameOrEmail"></label>
+            <input asp-for="@Model.UserNameOrEmail" type="text" placeholder="Enter UserName or Email" required />
+            <span asp-validation-for="@Model.UserNameOrEmail"></span>
+        </div>
+        <div class="single-input-item">
+            <label asp-for="@Model.Password"></label>
+            <input asp-for="@Model.Password" type="text" placeholder="Enter Password" required />
+            <span asp-validation-for="@Model.Password"></span>
+        </div>
+        <div class="single-input-item">
+            <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
+                <div class="remember-meta">
+                    <div class="custom-control custom-checkbox">
+                        <input asp-for="@Model.RememberMe" type="checkbox" class="custom-control-input" id="rememberMe">
+                        <label asp-for="@Model.RememberMe" class="custom-control-label" for="rememberMe">Remember Me</label>
+                    </div>
+                </div>
+                <a href="#" class="forget-pwd">Forgot Password?</a>
+            </div>
+        </div>
+        <div class="single-input-item">
+            <button type="submit" class="btn">Login</button>
+        </div>
+    </form>
+</div>

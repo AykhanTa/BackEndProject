@@ -1,0 +1,57 @@
+﻿@model RegisterVM
+
+<div class="login-reg-form-wrap signup-form">
+    <h2>Signup Form</h2>
+    <p class="mt-10">Already have an account? <a asp-action="login">Log in instead!</a></p>
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="single-input-item">
+            <label asp-for="FullName"></label>
+            <input asp-for="FullName" type="text" placeholder="Full Name" required />
+            <span asp-validation-for="FullName"></span>
+        </div>
+        <div class="single-input-item">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" type="text" placeholder="User Name" required />
+            <span asp-validation-for="UserName"></span>
+        </div>
+        <div class="single-input-item">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" type="text" placeholder="Email" required />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="single-input-item">
+                    <label asp-for="@Model.Password"></label>
+                    <input asp-for="@Model.Password" placeholder="Password">
+                    <span class="text-danger" asp-validation-for="@Model.Password"></span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="single-input-item">
+                    <label asp-for="@Model.RePassword"></label>
+                    <input asp-for="@Model.RePassword" placeholder="Password">
+                    <span class="text-danger" asp-validation-for="@Model.RePassword"></span>
+                </div>
+            </div>
+        </div>
+        <div class="single-input-item">
+            <div class="login-reg-form-meta">
+                <div class="remember-meta">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="subnewsletter">
+                        <label class="custom-control-label" for="subnewsletter">Subscribe Our Newsletter</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-input-item">
+            <button type="submit" class="btn">Register</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"> 
+}
