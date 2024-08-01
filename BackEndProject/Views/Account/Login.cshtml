@@ -10,8 +10,8 @@
         </div>
         <div class="single-input-item">
             <label asp-for="@Model.Password"></label>
-            <input asp-for="@Model.Password" type="text" placeholder="Enter Password" required />
-            <span asp-validation-for="@Model.Password"></span>
+            <input asp-for="@Model.Password" placeholder="Enter Password">
+            <span class="text-danger" asp-validation-for="@Model.Password"></span>
         </div>
         <div class="single-input-item">
             <div class="login-reg-form-meta d-flex align-items-center justify-content-between">

@@ -75,7 +75,53 @@
                                             </li>
                                         </ul>
                                     </li>
-                                </ul>
+                                    @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <li class="account">
+                                                @User.Identity.Name
+                                                <i class="fa fa-angle-down"></i>
+                                                <ul class="dropdown-list">
+                                                    @if (User.IsInRole("admin"))
+                                                    {
+                                                        <li>
+                                                            <a asp-area="manage" asp-controller="dashboard" asp-action="index">
+                                                                Go Admin Panel
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                    <li>
+                                                        <a asp-controller="account" asp-action="myaccount">
+                                                            My Account
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a asp-controller="account" asp-action="logout">
+                                                            Log out
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="account">
+                                                Login or Register
+                                                <i class="fa fa-angle-down"></i>
+                                                <ul class="dropdown-list">
+                                                    <li>
+                                                        <a asp-controller="account" asp-action="login">
+                                                            Login
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a asp-controller="account" asp-action="register">
+                                                            Register
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        }
+                                    </ul>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
-﻿using BackEndProject.Models;
+﻿using BackEndProject.Helpers;
+using BackEndProject.Models;
 using BackEndProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -44,7 +45,7 @@ namespace BackEndProject.Controllers
                 return View(registerVM);
             }
                 
-            await _userManager.AddToRoleAsync(user,"member");
+            await _userManager.AddToRoleAsync(user,UserRoles.member.ToString());
 
             return RedirectToAction("Index","Home");
 
@@ -59,7 +60,7 @@ namespace BackEndProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginVM loginVM)
+        public async Task<IActionResult> Login(LoginVM loginVM,string returnUrl)
         {
             if (!ModelState.IsValid) return View(loginVM);
             AppUser user=await _userManager.FindByEmailAsync(loginVM.UserNameOrEmail);
@@ -84,9 +85,21 @@ namespace BackEndProject.Controllers
                 ModelState.AddModelError("", "username or password is wrong...");
                 return View(loginVM);
             }
-            return RedirectToAction("Index","Home");
+
+            var roles = await _userManager.GetRolesAsync(user);
+            if (roles.Contains(UserRoles.admin.ToString()))
+                return RedirectToAction("Index", "dashboard", new {area="manage"});
+
+            if (returnUrl is null)
+                return RedirectToAction("Index","Home");
+            return Redirect(returnUrl);
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
 
         //public async Task<IActionResult> Role()
         //{

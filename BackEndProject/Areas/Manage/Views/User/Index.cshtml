@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AppUser>
+
+<h1 class="h3 mb-2 text-gray-800">Users Table</h1>
+
+<a class="btn btn-primary mt-4 mb-4" href="/manage/product/create">Create User</a>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">UserName</th>
+            <th scope="col">FullName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Status</th>
+            <th scope="col">Settings</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>@user.FullName</td>
+                <td>@user.Email</td>
+                @if (user.IsBlocked)
+                {
+                    <td class="text-danger">blocked</td>
+                }
+                else
+                {
+                    <td class="text-success">active</td>
+
+                }
+                <td>
+                    <a class="btn btn-secondary" asp-action="update" asp-route-id="@user.Id">update</a>
+                    <a class="btn btn-secondary" asp-action="delete" asp-route-id="@user.Id">delete</a>
+                    <a class="btn btn-secondary" asp-action="detail" asp-route-id="@user.Id">detail</a>
+                    @if (user.IsBlocked)
+                    {
+                        <a class="btn btn-secondary" asp-action="ChangeUserStatus" asp-route-id="@user.Id">unblock</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-secondary" asp-action="ChangeUserStatus" asp-route-id="@user.Id">block</a>
+
+                    }
+                </td>
+            </tr>
+             
+        }
+    </tbody>
+</table>
